@@ -14,7 +14,7 @@ pin = 4
 with open("/home/pi/location.txt", "r") as locationfile:
 	loc = locationfile.read()
 	loc = loc.rstrip()
-url = 'example.com/sensor.php' #webserver address to push data to- can be local or web facing
+url = 'https://example/sensor.php' #webserver address to push data to- can be local or web facing
 key = '' #API key if set in sensor.php on the server
 
 

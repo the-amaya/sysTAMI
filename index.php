@@ -5,12 +5,12 @@
 <p>
 
 <?php
-$filenamet = './cgi-bin/rrd/temp/dy/time.txt';
+$filenamet = './cgi-bin/rrd/temp/time.txt';
 $filedatet = filemtime($filenamet);
 if ($filedatet+60 <= time()) {
 	$outputex = shell_exec("./cgi-bin/rrd/temp/current_graph.py");
 }
-$filenameh = './cgi-bin/rrd/humidity/dy/time.txt';
+$filenameh = './cgi-bin/rrd/humidity/time.txt';
 $filedateh = filemtime($filenameh);
 if ($filedateh+60 <= time()) {
 	$outputex = shell_exec("./cgi-bin/rrd/humidity/current_graph.py");

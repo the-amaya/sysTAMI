@@ -6,7 +6,7 @@ $key = $_POST['key'];
 $temp = '';
 $humidity = '';
 
-$mysql = "0" //change this to a 1 if you want to also push data to a mySQL server
+$mysql = "0"; //change this to a 1 if you want to also push data to a mySQL server
 
 if ($key == ""){ //if this is public facing you should probably generate a key and put here. this acts as an API key. You will need to put the same key in sensor-push.py
 	if (isset($_POST['temp'])){

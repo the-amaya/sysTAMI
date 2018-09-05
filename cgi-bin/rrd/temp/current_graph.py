@@ -7,11 +7,11 @@ import glob
 import os
 import rrdtool
 import time
-os.utime('./dy/time.txt', None) #may need full path
-imagePath = '/full/path/to/images' #no trailing /
-rrdLocation = "/full/path/to/cgi-bin/rrd/temp/" #with trailing /
+os.utime('cgi-bin/rrd/temp/time.txt', None) #may need full path
+imagePath = '/var/www/demo/images' #no trailing /
+rrdLocation = "/var/www/demo/cgi-bin/rrd/temp/" #with trailing /
 rrdPath = rrdLocation + "*.rrd"
-pathLengh = len[rrdLocation]
+pathLength = len(rrdLocation)
 
 def line_name(a):
  while len(a) < 20:
@@ -38,11 +38,11 @@ def cus_color(a): #define colors based on location name. If a color is not defin
  return a
 
 def one_hour():
- a = """rrdtool.graph('""" + imagePath + """/humidity/01hr.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-3600', '--step', '60', '--title="Humidity over the past hour"', '--disable-rrdtool-tag', '--vertical-label', 'Humidity %', '--alt-y-grid'"""
+ a = """rrdtool.graph('""" + imagePath + """/temp/01hr.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-3600', '--step', '60', '--title="Temperature over the past hour"', '--disable-rrdtool-tag', '--vertical-label', 'Degrees F', '--alt-y-grid'"""
  for files in sorted(glob.glob(rrdPath)):
   if time.time() - os.path.getmtime(files) < (60 * 60):
    fname = files
-   hex = files[pathLengh:-4]
+   hex = files[pathLength:-4]
    lname = line_name(hex)
    hex = cus_color(hex)
    a = a + """, 'DEF:""" + hex + """=""" + files + """:temp:AVERAGE', """
@@ -55,7 +55,7 @@ def one_hour():
  return a
 
 def three_hours():
- a = """rrdtool.graph('""" + imagePath + """/humidity/03hr.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-10800', '--title="Humidity over the past three hours"', '--disable-rrdtool-tag', '--vertical-label', 'Humidity %'"""
+ a = """rrdtool.graph('""" + imagePath + """/temp/03hr.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-10800', '--title="Temperature over the past three hours"', '--disable-rrdtool-tag', '--vertical-label', 'Degrees F'"""
  for files in sorted(glob.glob(rrdPath)):
   if time.time() - os.path.getmtime(files) < (3 * 60 * 60):
    fname = files
@@ -72,7 +72,7 @@ def three_hours():
  return a
 
 def one_day():
- a = """rrdtool.graph('""" + imagePath + """/humidity/24hr.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-86400', '--title="Humidity over the past day"', '--disable-rrdtool-tag', '--vertical-label', 'Humidity %'"""
+ a = """rrdtool.graph('""" + imagePath + """/temp/24hr.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-86400', '--title="Temperature over the past day"', '--disable-rrdtool-tag', '--vertical-label', 'Degrees F'"""
  for files in sorted(glob.glob(rrdPath)):
   if time.time() - os.path.getmtime(files) < (24 * 60 * 60):
    fname = files
@@ -89,7 +89,7 @@ def one_day():
  return a
 
 def one_week():
- a = """rrdtool.graph('""" + imagePath + """/humidity/1week.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-604800', '--title="Humidity over the past week"', '--disable-rrdtool-tag', '--vertical-label', 'Humidity %'"""
+ a = """rrdtool.graph('""" + imagePath + """/temp/1week.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-604800', '--title="Temperature over the past week"', '--disable-rrdtool-tag', '--vertical-label', 'Degrees F'"""
  for files in sorted(glob.glob(rrdPath)):
   if time.time() - os.path.getmtime(files) < (7 * 24 * 60 * 60):
    fname = files
@@ -106,7 +106,7 @@ def one_week():
  return a
 
 def four_weeks():
- a = """rrdtool.graph('""" + imagePath + """/humidity/4weeks.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-2419200', '--title="Humidity over the past month"', '--disable-rrdtool-tag', '--vertical-label', 'Humidity %'"""
+ a = """rrdtool.graph('""" + imagePath + """/temp/4weeks.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-2419200', '--title="Temperature over the past month"', '--disable-rrdtool-tag', '--vertical-label', 'Degrees F'"""
  for files in sorted(glob.glob(rrdPath)):
   if time.time() - os.path.getmtime(files) < (4 * 7 * 24 * 60 * 60):
    fname = files
@@ -123,7 +123,7 @@ def four_weeks():
  return a
 
 def three_months():
- a = """rrdtool.graph('""" + imagePath + """/humidity/3months.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-7257600', '--title="Humidity over the three months"', '--disable-rrdtool-tag', '--vertical-label', 'Humidity %'"""
+ a = """rrdtool.graph('""" + imagePath + """/temp/3months.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-7257600', '--title="Temperature over the three months"', '--disable-rrdtool-tag', '--vertical-label', 'Degrees F'"""
  for files in sorted(glob.glob(rrdPath)):
   if time.time() - os.path.getmtime(files) < (3 * 4 * 7 * 24 * 60 * 60):
    fname = files
@@ -140,7 +140,7 @@ def three_months():
  return a
 
 def one_year():
- a = """rrdtool.graph('""" + imagePath + """/humidity/1year.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-29030400', '--title="Humidity over the past year"', '--disable-rrdtool-tag', '--vertical-label', 'Humidity %'"""
+ a = """rrdtool.graph('""" + imagePath + """/temp/1year.png', '--imgformat', 'PNG', '--width', '750', '--height', '350', '--start', '-29030400', '--title="Temperature over the past year"', '--disable-rrdtool-tag', '--vertical-label', 'Degrees F'"""
  for files in sorted(glob.glob(rrdPath)):
   if time.time() - os.path.getmtime(files) < (4 * 3 * 4 * 7 * 24 * 60 * 60):
    fname = files
@@ -158,7 +158,7 @@ def one_year():
 
 
 fileCMD = rrdLocation + "cmd.py"
-f = open('fileCMD, 'w+')
+f = open(fileCMD, 'w+')
 f.write("#!/usr/bin/env python\n")
 f.write("import rrdtool\n")
 f.write("try: ")

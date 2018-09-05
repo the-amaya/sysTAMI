@@ -15,7 +15,7 @@ value = (sys.argv[2])
 name = (sys.argv[3])
 checkfloat = float(value)
 debug = 0
-alert = "./alert.py temp " + value + " " + name #may require absolute path
+alert = "alert.py temp " + value + " " + name #may require absolute path
 
 if (45 < checkfloat < 85): #acceptable temp range
 	pass
@@ -25,7 +25,7 @@ else:
 
 query_q = str(time + ':' + value)
 filerrd = (name + '.rrd')
-outName = str('./rrd/temp/' + filerrd) #may require absolute path
+outName = str('/var/www/demo/cgi-bin/rrd/temp/' + filerrd) #may require absolute path
 if not os.path.exists(outName):
  rrdtool.create( outName,
  '--start', '-300',

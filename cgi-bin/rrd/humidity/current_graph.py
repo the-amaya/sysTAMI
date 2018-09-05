@@ -7,11 +7,11 @@ import glob
 import os
 import rrdtool
 import time
-os.utime('./dy/time.txt', None) #may need full path
-imagePath = '/full/path/to/images' #no trailing /
-rrdLocation = "/full/path/to/cgi-bin/rrd/humidity/" #with trailing /
+os.utime('cgi-bin/rrd/humidity/time.txt', None) #may need full path
+imagePath = '/var/www/demo/images' #no trailing /
+rrdLocation = "/var/www/demo/cgi-bin/rrd/humidity/" #with trailing /
 rrdPath = rrdLocation + "*.rrd"
-pathLengh = len[rrdLocation]
+pathLength = len(rrdLocation)
 
 def line_name(a):
  while len(a) < 20:
@@ -42,7 +42,7 @@ def one_hour():
  for files in sorted(glob.glob(rrdPath)):
   if time.time() - os.path.getmtime(files) < (60 * 60):
    fname = files
-   hex = files[pathLengh:-4]
+   hex = files[pathLength:-4]
    lname = line_name(hex)
    hex = cus_color(hex)
    a = a + """, 'DEF:""" + hex + """=""" + files + """:temp:AVERAGE', """
@@ -158,7 +158,7 @@ def one_year():
 
 
 fileCMD = rrdLocation + "cmd.py"
-f = open('fileCMD, 'w+')
+f = open(fileCMD, 'w+')
 f.write("#!/usr/bin/env python\n")
 f.write("import rrdtool\n")
 f.write("try: ")
