@@ -12,7 +12,8 @@ Basic usage- put the contents of the deploy folder on a raspberry pi with a temp
 -follow the comments in individual files to configure as necessary
 
 this project uses the adafruit python dht library which can be installed on your pi as follows
-```sudo apt-get update
+```
+sudo apt-get update
 sudo apt-get install build-essential python-dev python-openssl git
 git clone https://github.com/adafruit/Adafruit_Python_DHT.git && cd Adafruit_Python_DHT
 sudo python setup.py install
