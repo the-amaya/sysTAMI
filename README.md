@@ -5,6 +5,10 @@ Collect and record data from multiple locations using raspberry pi's and DHT22 s
 primary focus is storing data in RRD files (for a time frame of 1 year) and generate graphs on demand
 There is also an option to store data in a mysql database to avoid data loss associated with RRD files.
 
+[Demo] (https://demo.darkmage.org/)
+
+###this needs moved to a wiki page###
+
 Basic usage- put the contents of the deploy folder on a raspberry pi with a temperature, humidity, or both sensor
 (this is currently designed to use the DHT22 sensor but can be adapted to other sensor types) everything else goes in a web directory
 
